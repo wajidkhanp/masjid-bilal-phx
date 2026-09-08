@@ -1,0 +1,1 @@
+.story-collage{background:var(--white);padding:70px clamp(28px,8vw,120px)}.story-collage img{height:auto;max-width:1100px;margin:0 auto;object-fit:contain}.story-collage figcaption{color:var(--muted);font-size:13px;margin-top:14px;text-align:center}@media(max-width:700px){.story-collage{padding:52px 18px}.story-collage figcaption{font-size:12px;text-align:left}}
