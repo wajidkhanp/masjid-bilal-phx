@@ -6,6 +6,7 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 const dataPath = path.join(__dirname, 'data', 'site.json');
+const adhanPath = path.join(__dirname, 'data', 'adhan.json');
 const adminPassword = process.env.ADMIN_PASSWORD;
 const sessionSecret = process.env.SESSION_SECRET;
 
@@ -18,6 +19,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 function readSite() {
   return JSON.parse(fs.readFileSync(dataPath, 'utf8'));
+}
+
+function readAdhan() {
+  return JSON.parse(fs.readFileSync(adhanPath, 'utf8'));
 }
 
 function writeSite(site) {
@@ -45,7 +50,7 @@ function requireAdmin(req, res, next) {
   next();
 }
 
-app.get('/api/site', (req, res) => res.json(readSite()));
+app.get('/api/site', (req, res) => res.json({ ...readSite(), adhanSchedule: readAdhan() }));
 
 app.post('/api/login', (req, res) => {
   if (!req.body?.password || !safeEqual(req.body.password, adminPassword)) {
@@ -62,10 +67,16 @@ app.post('/api/logout', (req, res) => {
 });
 
 app.put('/api/site', requireAdmin, (req, res) => {
-  const times = Array.isArray(req.body?.times) ? req.body.times.slice(0, 5).map((item) => ({ name: String(item.name || '').slice(0, 20), iqama: String(item.iqama || '').slice(0, 30) })) : [];
+  const times = Array.isArray(req.body?.times) ? req.body.times.slice(0, 5).map((item) => ({
+    name: String(item.name || '').slice(0, 20),
+    arabic: String(item.arabic || '').slice(0, 30),
+    adhan: String(item.adhan || '').slice(0, 30),
+    iqama: String(item.iqama || '').slice(0, 30)
+  })) : [];
   const announcements = Array.isArray(req.body?.announcements) ? req.body.announcements.slice(0, 2).map((item) => String(item || '').trim().slice(0, 120)).filter(Boolean) : [];
   if (times.length !== 5) return res.status(400).json({ error: 'Please provide all five prayer times.' });
-  writeSite({ times, announcements });
+  const currentSite = readSite();
+  writeSite({ times, announcements, jumuah: currentSite.jumuah || [] });
   res.json(readSite());
 });
 

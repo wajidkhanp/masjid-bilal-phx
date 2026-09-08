@@ -22,6 +22,8 @@ Set `NODE_ENV=production` in Railway so the admin session cookie is marked Secur
 
 The editable site content is stored in `data/site.json`. Railway's local filesystem is suitable for a small starter site, but add a managed database or persistent volume before running multiple instances or needing durable content backups.
 
+The monthly adhan schedule from `images/Salat Time Table Phoenix.pdf` is stored in `data/adhan.json` and displayed through the month selector on `/timetable.html`. Iqama values remain editable from `/admin`.
+
 ## Initial content
 
 The address and history copy come from the supplied masjid brochure and Word document. The initial iqama values are seed values and should be checked by the masjid team in `/admin` before launch.
