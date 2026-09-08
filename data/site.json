@@ -1,0 +1,29 @@
+{
+  "times": [
+    {
+      "name": "Fajr",
+      "iqama": "5:15 AM"
+    },
+    {
+      "name": "Dhuhr",
+      "iqama": "1:15 PM"
+    },
+    {
+      "name": "Asr",
+      "iqama": "4:00 PM"
+    },
+    {
+      "name": "Maghrib",
+      "iqama": "At sunset"
+    },
+    {
+      "name": "Isha",
+      "iqama": "8:30 PM"
+    }
+  ],
+  "announcements": [
+    "Friday Jummah: 1:15 PM",
+    "Ramadan programs will be announced here."
+  ],
+  "updatedAt": "2026-09-08T05:27:58.259Z"
+}
