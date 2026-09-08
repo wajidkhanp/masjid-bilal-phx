@@ -1,5 +1,6 @@
 const prayerKeys = ['fajr', 'shuruq', 'dhuhr', 'asr', 'maghrib', 'isha'];
 const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const prayerThumbnails = { Fajr: 'time-fajr.svg', Dhuhr: 'time-dhuhr.svg', Asr: 'time-asr.svg', Maghrib: 'time-maghrib.svg', Isha: 'time-isha.svg' };
 
 function getTodayAdhan(site) {
   const today = new Date();
@@ -13,7 +14,7 @@ function renderHome(site) {
   const today = getTodayAdhan(site);
   const heading = document.createElement('div');
   heading.className = 'daily-table-heading';
-  ['Prayer', 'Adhan', 'Iqama'].forEach((label) => {
+  ['', 'Prayer', 'Adhan', 'Iqama'].forEach((label) => {
     const cell = document.createElement('span');
     cell.textContent = label;
     heading.append(cell);
@@ -22,7 +23,7 @@ function renderHome(site) {
   site.times.forEach((time) => {
     const card = document.createElement('div');
     card.className = 'time-card';
-    card.innerHTML = `<span>${time.name}</span><strong></strong><em></em>`;
+    card.innerHTML = `<img src="/assets/${prayerThumbnails[time.name]}" alt="${time.name} time of day"><span>${time.name}</span><strong></strong><em></em>`;
     card.querySelector('strong').textContent = today?.[time.name.toLowerCase()] || time.adhan || '—';
     card.querySelector('em').textContent = time.iqama;
     timeGrid.append(card);
