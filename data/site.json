@@ -3,7 +3,7 @@
     { "name": "Fajr", "arabic": "الفجر", "adhan": "4:57 AM", "iqama": "5:15 AM" },
     { "name": "Dhuhr", "arabic": "الظهر", "adhan": "12:26 PM", "iqama": "1:15 PM" },
     { "name": "Asr", "arabic": "العصر", "adhan": "4:01 PM", "iqama": "4:00 PM" },
-    { "name": "Maghrib", "arabic": "المغرب", "adhan": "6:45 PM", "iqama": "+7 min after adhan" },
+    { "name": "Maghrib", "arabic": "المغرب", "adhan": "6:45 PM", "iqama": "At sunset" },
     { "name": "Isha", "arabic": "العشاء", "adhan": "7:55 PM", "iqama": "8:30 PM" }
   ],
   "jumuah": [{ "label": "Friday Jummah", "iqama": "1:15 PM" }],

@@ -11,11 +11,20 @@ function renderHome(site) {
   const timeGrid = document.querySelector('#time-grid');
   if (!timeGrid) return;
   const today = getTodayAdhan(site);
+  const heading = document.createElement('div');
+  heading.className = 'daily-table-heading';
+  ['Prayer', 'Adhan', 'Iqama'].forEach((label) => {
+    const cell = document.createElement('span');
+    cell.textContent = label;
+    heading.append(cell);
+  });
+  timeGrid.replaceChildren(heading);
   site.times.forEach((time) => {
     const card = document.createElement('div');
     card.className = 'time-card';
-    card.innerHTML = `<span>${time.name}</span><small>Adhan</small><strong></strong><em>Iqama</em>`;
+    card.innerHTML = `<span>${time.name}</span><strong></strong><em></em>`;
     card.querySelector('strong').textContent = today?.[time.name.toLowerCase()] || time.adhan || '—';
+    card.querySelector('em').textContent = time.iqama;
     timeGrid.append(card);
   });
 }

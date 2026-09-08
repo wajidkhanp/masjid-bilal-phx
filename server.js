@@ -71,7 +71,7 @@ app.put('/api/site', requireAdmin, (req, res) => {
     name: String(item.name || '').slice(0, 20),
     arabic: String(item.arabic || '').slice(0, 30),
     adhan: String(item.adhan || '').slice(0, 30),
-    iqama: String(item.iqama || '').slice(0, 30)
+    iqama: String(item.name || '') === 'Maghrib' ? 'At sunset' : String(item.iqama || '').slice(0, 30)
   })) : [];
   const announcements = Array.isArray(req.body?.announcements) ? req.body.announcements.slice(0, 2).map((item) => String(item || '').trim().slice(0, 120)).filter(Boolean) : [];
   if (times.length !== 5) return res.status(400).json({ error: 'Please provide all five prayer times.' });
