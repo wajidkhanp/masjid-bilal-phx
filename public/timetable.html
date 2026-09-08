@@ -8,10 +8,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/brand.css">
   <link rel="stylesheet" href="/monthly.css">
 </head>
 <body>
-  <header class="site-header"><a class="brand" href="/"><span class="brand-mark">م</span><span><strong>Masjid Bilal</strong><small>Islamic Center of Greater Phoenix</small></span></a><nav><a href="/">Home</a><a class="active" href="/timetable.html">Prayer times</a><a href="/history.html">Our story</a><a class="nav-cta" href="/#visit">Visit us</a></nav></header>
+  <header class="site-header"><a class="brand" href="/"><img class="brand-logo" src="/assets/masjid-bilal-logo.svg" alt=""><span><strong>Masjid Bilal</strong><small>مسجد بلال · Islamic Center of Greater Phoenix</small></span></a><button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="site-nav" aria-expanded="false"><span></span><span></span><span></span></button><nav id="site-nav"><a href="/">Home</a><a class="active" href="/timetable.html">Prayer times</a><a href="/history.html">Our story</a><a class="nav-cta" href="/#visit">Visit us</a></nav></header>
   <main>
     <section class="page-intro"><p class="eyebrow">Phoenix, Arizona</p><h1>Prayer timetable</h1><p>Adhan times from the masjid's perpetual Phoenix prayer schedule.</p></section>
     <section class="month-picker"><label for="month-select">Select month<select id="month-select"></select></label></section>
@@ -20,6 +21,6 @@
     <section class="ramadan-note"><span class="ornament">✦</span><div><p class="eyebrow">Ramadan</p><h2>Quran khatam & Taraweeh</h2><p>Full Quran khatam and Taraweeh are held during Ramadan. Watch this space for seasonal updates.</p></div></section>
   </main>
   <footer><span>© Islamic Center of Greater Phoenix</span><span>Masjid Bilal Phoenix</span></footer>
-  <script src="/app.js"></script>
+  <script src="/app.js"></script><script src="/nav.js"></script>
 </body>
 </html>
