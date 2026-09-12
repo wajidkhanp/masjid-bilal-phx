@@ -1,12 +1,33 @@
-.site-header{position:fixed;top:0;left:0;right:0;width:100%;z-index:10}.brand-logo{height:52px;object-fit:contain;width:58px}.brand strong{color:var(--maroon);font-family:var(--serif);font-size:24px;line-height:1.2}.brand small{font-size:18px;line-height:1.4}.menu-toggle{background:transparent;border:0;display:none;padding:8px}.menu-toggle span{background:var(--maroon);display:block;height:2px;margin:5px 0;width:24px}body{padding-top:84px}@media(max-width:700px){body{padding-top:74px}.site-header{padding:16px 18px}.brand{gap:8px}.brand-logo{height:42px;width:46px}.brand strong{font-size:20px}.brand small{font-size:14px}.menu-toggle{display:block}nav{background:var(--cream);display:none;flex-direction:column;gap:0;left:0;padding:12px 18px 18px;position:absolute;right:0;top:100%;box-shadow:0 8px 20px rgba(58,13,32,.12)}nav.is-open{display:flex}nav a{padding:12px 0;width:100%}nav .nav-cta{margin-top:6px;padding:11px 14px;text-align:center}.menu-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}.menu-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}.menu-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}}
-
-/* Keep the next prayer visible even when the mobile menu is closed. */
-.site-header{gap:18px;align-items:center}
-.next-iqama{background:#f6e5d8;border:1px solid #e7cbb9;border-radius:999px;color:var(--maroon);display:flex;flex-direction:column;flex-shrink:0;padding:8px 15px;white-space:nowrap}
+/* Sticky positioning lets the header grow with wrapped text without covering content. */
+body{padding-top:0}
+.site-header{position:sticky;top:0;width:100%;z-index:10;align-items:center;gap:20px}
+.brand{min-width:0}
+.brand-logo{height:52px;object-fit:contain;width:58px;flex-shrink:0}
+.brand strong{color:var(--maroon);font-family:var(--serif);font-size:24px;line-height:1.2;white-space:nowrap}
+.brand small{font-size:18px;line-height:1.4}
+.menu-toggle{background:transparent;border:0;display:none;padding:8px;cursor:pointer}
+.menu-toggle span{background:var(--maroon);display:block;height:2px;margin:5px 0;width:24px}
+.next-iqama{background:#f6e5d8;border:1px solid #e7cbb9;border-radius:999px;color:var(--maroon);display:flex;flex-direction:column;flex-shrink:0;padding:8px 15px;gap:2px;white-space:nowrap}
 .next-iqama[hidden]{display:none}
-.next-iqama-label{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.next-iqama-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
 .next-iqama-time{font-size:12px;font-weight:600}
 .next-iqama:hover{background:#efd7c5}
 .next-iqama:focus-visible{outline:2px solid var(--maroon);outline-offset:3px}
-@media(min-width:701px) and (max-width:1100px){.site-header{padding-left:20px;padding-right:20px;gap:12px}.site-header nav{gap:12px}.brand small{max-width:155px}.next-iqama{padding:8px 11px}}
-@media(max-width:700px){body:has(.next-iqama){padding-top:122px}.site-header:has(.next-iqama){display:grid;grid-template-columns:1fr auto;gap:8px;padding:12px 18px}.next-iqama{grid-column:1 / -1;flex-direction:row;align-items:center;justify-content:center;gap:9px;padding:6px 12px}.next-iqama-label{font-size:9px}.next-iqama-time{font-size:12px}}
+@media(min-width:1001px) and (max-width:1200px){.site-header{padding-left:20px;padding-right:20px;gap:12px}.site-header nav{gap:12px}}
+@media(max-width:1000px){
+  .site-header{display:grid;grid-template-columns:minmax(0,1fr) 40px;gap:12px;padding:14px 18px;align-items:center}
+  .brand{grid-column:1;grid-row:1;gap:8px}
+  .brand>span{min-width:0}
+  .brand-logo{height:42px;width:46px}
+  .menu-toggle{display:block;grid-column:2;grid-row:1}
+  .site-header nav{background:var(--cream);display:none;flex-direction:column;gap:0;left:0;padding:12px 18px 18px;position:absolute;right:0;top:100%;box-shadow:0 8px 20px rgba(58,13,32,.12)}
+  .site-header nav.is-open{display:flex}
+  .site-header nav a{padding:12px 0;width:100%}
+  .site-header nav .nav-cta{margin-top:6px;padding:11px 14px;text-align:center}
+  .next-iqama{grid-column:1 / -1;grid-row:2;justify-self:center;max-width:100%;flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 10px;padding:8px 16px;white-space:normal;text-align:center}
+  .next-iqama-time{white-space:nowrap}
+  .menu-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .menu-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+  .menu-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+}
+@media(max-width:700px){.brand strong{font-size:20px}.brand small{font-size:14px}}
