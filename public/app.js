@@ -30,6 +30,12 @@ function renderHome(site) {
   });
 }
 
+function getPhoenixDate() {
+  return Object.fromEntries(new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/Phoenix', month: 'long', day: 'numeric'
+  }).formatToParts(new Date()).map(({ type, value }) => [type, value]));
+}
+
 function renderMonthlyTable(site, monthName) {
   const table = document.querySelector('#monthly-times');
   if (!table) return;
@@ -42,12 +48,23 @@ function renderMonthlyTable(site, monthName) {
     header.append(cell);
   });
   table.append(header);
+  const today = getPhoenixDate();
   (site.adhanSchedule?.[monthName] || []).forEach((day) => {
     const row = document.createElement('div');
     row.className = 'monthly-row';
-    [day.day, ...prayerKeys.map((key) => day[key])].forEach((value) => {
+    if (monthName === today.month && Number(day.day) === Number(today.day)) {
+      row.classList.add('is-today');
+      row.setAttribute('aria-current', 'date');
+    }
+    [day.day, ...prayerKeys.map((key) => day[key])].forEach((value, index) => {
       const cell = document.createElement('span');
       cell.textContent = value;
+      if (index === 0 && row.classList.contains('is-today')) {
+        const label = document.createElement('small');
+        label.className = 'today-label';
+        label.textContent = 'Today';
+        cell.append(label);
+      }
       row.append(cell);
     });
     table.append(row);
@@ -63,7 +80,7 @@ function renderTimetable(site) {
     option.textContent = month;
     selector.append(option);
   });
-  const currentMonth = monthNames[new Date().getMonth()];
+  const currentMonth = getPhoenixDate().month;
   selector.value = currentMonth;
   renderMonthlyTable(site, currentMonth);
   selector.addEventListener('change', () => renderMonthlyTable(site, selector.value));
