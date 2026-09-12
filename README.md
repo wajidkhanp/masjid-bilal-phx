@@ -20,6 +20,8 @@ Open http://localhost:3000. The private control panel is at `/admin`.
 
 Set `NODE_ENV=production` in Railway so the admin session cookie is marked Secure. Never deploy without replacing both example secrets with strong, unique values.
 
+Static assets (CSS, JavaScript, and images) use a five-minute cache lifetime (`Cache-Control: public, max-age=300`). HTML revalidates on each request. In Cloudflare, set **Caching > Configuration > Browser Cache TTL** to **Respect Existing Headers**, and ensure Cache Rules do not override the origin's browser or edge TTL. Deploy the change and purge previously cached assets in Cloudflare. Existing browser copies can retain their earlier four-hour lifetime until they expire or the visitor hard-refreshes.
+
 The editable site content is stored in `data/site.json`. Railway's local filesystem is suitable for a small starter site, but add a managed database or persistent volume before running multiple instances or needing durable content backups.
 
 The monthly adhan schedule from `images/Salat Time Table Phoenix.pdf` is stored in `data/adhan.json` and displayed through the month selector on `/timetable.html`. Iqama values remain editable from `/admin`.

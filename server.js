@@ -15,7 +15,14 @@ if (!adminPassword || !sessionSecret) {
 }
 
 app.use(express.json({ limit: '20kb' }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public'), {
+  maxAge: '5m',
+  setHeaders(res, filePath) {
+    if (path.extname(filePath) === '.html') {
+      res.setHeader('Cache-Control', 'public, max-age=0');
+    }
+  }
+}));
 
 function readSite() {
   return JSON.parse(fs.readFileSync(dataPath, 'utf8'));
